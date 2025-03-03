@@ -1,7 +1,6 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Mail } from 'lucide-react';
 
-
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
@@ -31,10 +30,20 @@ const Footer = () => {
               <li>Email: tejaverukonda@gmail.com</li>
             </ul>
           </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
+            <div className="flex space-x-4">
+              <Facebook className="h-6 w-6 text-gray-400 hover:text-orange-500 cursor-pointer" />
+              <Twitter className="h-6 w-6 text-gray-400 hover:text-orange-500 cursor-pointer" />
+              <Instagram className="h-6 w-6 text-gray-400 hover:text-orange-500 cursor-pointer" />
+              <Mail className="h-6 w-6 text-gray-400 hover:text-orange-500 cursor-pointer" />
+            </div>
+          </div>
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} CanteenXpress. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} CanteenXpress. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -42,4 +51,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
