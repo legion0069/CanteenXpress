@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=${PORT:-3000} --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && mv dist public",
     "lint": "eslint .",
     "preview": "vite preview",
     "server": "node server/index.js",
@@ -42,3 +42,5 @@
     "nodemon": "^3.0.3"
   }
 }
+
+
