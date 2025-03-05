@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       setError(null);
-      const response = await axios.get('http://localhost:3000/users', {
+      const response = await axios.get('https://canteenxpress-server.onrender.com/users', {
         params: {
           email: credentials.email,
           password: credentials.password
