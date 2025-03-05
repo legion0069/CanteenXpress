@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://canteenxpress-server.onrender.com/users'; // Updated backend URL
+const API_BASE_URL = 'https://canteenxpress-server.onrender.com'; // Updated backend URL
 
 const api = axios.create({
   baseURL: API_BASE_URL,
