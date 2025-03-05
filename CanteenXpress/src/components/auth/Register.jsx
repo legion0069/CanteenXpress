@@ -57,7 +57,7 @@ const Register = () => {
     setError('');
     
     try {
-      const response = await axios.post('http://localhost:3000/users', userData);
+      const response = await axios.post('https://canteenxpress-server.onrender.com/users', userData);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
