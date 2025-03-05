@@ -39,19 +39,39 @@ api.interceptors.response.use(
 
 // Auth services
 export const authService = {
-  login: (credentials) => api.post('/auth/login', credentials),
-  register: (userData) => api.post('/auth/register', userData),
+  // Register new user (POST /users)
+  register: async (userData) => {
+    return api.post('/users', userData);
+  },
+
+  // Simulated login (GET /users?email=...)
+  login: async (credentials) => {
+    const response = await api.get(`/users?email=${credentials.email}`);
+    
+    if (response.data.length === 0) {
+      throw new Error('User not found');
+    }
+
+    const user = response.data[0];
+
+    // Simulating password check (since JSON Server does not hash passwords)
+    if (user.password !== credentials.password) {
+      throw new Error('Invalid credentials');
+    }
+
+    // Simulating token storage (JSON Server does not issue tokens)
+    localStorage.setItem('token', JSON.stringify(user));
+
+    return user;
+  },
+
+  // Simulated logout
   logout: () => {
-    api.post('/auth/logout');
     localStorage.removeItem('token');
+    return Promise.resolve(); // Simulating API call
   }
 };
 
-// User services
-export const userService = {
-  getProfile: () => api.get('/users/profile'),
-  updateProfile: (userData) => api.put('/users/profile', userData)
-};
 
 // Menu services
 export const menuService = {
