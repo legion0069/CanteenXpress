@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
 import { AlertCircle } from 'lucide-react';
+
+const API_BASE_URL = 'https://canteenxpress-server.onrender.com'; // Replace with your backend URL
 
 const Register = () => {
   const [step, setStep] = useState(1);
@@ -46,26 +48,29 @@ const Register = () => {
     setStep(1);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!userData.classroomAddress) {
-      setError('Please enter your classroom address');
-      return;
-    }
-    
-    setIsLoading(true);
-    setError('');
-    
-    try {
-      await register(userData);
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!userData.classroomAddress) {
+    setError('Please enter your classroom address');
+    return;
+  }
+
+  setIsLoading(true);
+  setError('');
+
+  try {
+    // Directly post data to backend
+    await axios.post(`${API_BASE_URL}/users`, userData);
+
+    navigate('/dashboard');
+  } catch (err) {
+    setError(err.response?.data?.message || 'Registration failed');
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen pt-24 pb-12 flex items-center justify-center bg-gray-50">
